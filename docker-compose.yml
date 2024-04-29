@@ -2,7 +2,7 @@ version: "3.8"
 services:
   cms-db:
     image: mysql:5.7
-    platform: linux/amd64
+    # platform: linux/amd64
     volumes:
       - db-data:/var/lib/mysql
       - ./:/docker-entrypoint-initdb.d
@@ -19,7 +19,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    platform: linux/amd64
+    # platform: linux/amd64
     depends_on:
       - cms-db
     ports:
