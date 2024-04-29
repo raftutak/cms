@@ -1,0 +1,30 @@
+.columnsContainer {
+  background-color: rgb(227, 227, 227);
+}
+
+.column {
+  padding: 0 20px;
+}
+
+.column h4 {
+  margin-bottom: 20px;
+}
+
+.columnContainer {
+  background-color: rgb(227, 227, 227);
+}
+
+.one {
+  padding: 0 20px;
+}
+
+.one h4 {
+  text-align: center;
+  font-size: 2rem;
+  padding-bottom: 20px;
+}
+
+.one p {
+  text-align: center;
+  font-size: 1.2rem;
+}

@@ -1,0 +1,9 @@
+.alertOverlay {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  min-width: 500px;
+  z-index: 5000;
+}

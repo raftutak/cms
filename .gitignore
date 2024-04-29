@@ -1,0 +1,6 @@
+cms-backend/node_modules
+cms-backend/package-lock.json
+.env
+
+cms-frontend/node_modules
+cms-frontend/package-lock.json

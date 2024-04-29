@@ -1,0 +1,56 @@
+version: "3.8"
+services:
+  cms-db:
+    image: mysql:5.7
+    platform: linux/amd64
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    platform: linux/amd64
+    depends_on:
+      - cms-db
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: cms-db
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASS}
+
+  cms-backend:
+    build: ./cms-backend
+    ports:
+      - "5001:5001"
+    depends_on:
+      cms-db:
+        condition: service_healthy
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_HOST: ${DB_HOST}
+      JWT_SECRET: ${JWT_SECRET}
+      EMAIL_USER: ${EMAIL_USER}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+
+  cms-frontend:
+    build: ./cms-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - cms-backend
+
+volumes:
+  db-data:

@@ -1,0 +1,21 @@
+.columnsContainer {
+  /* background-color: rgb(227, 227, 227); */
+}
+
+.column h4 {
+  margin-bottom: 20px;
+}
+
+.columnContainer {
+  display: flex;
+}
+
+.one {
+  width: 100%;
+}
+
+.one h4 {
+  text-align: center;
+  font-size: 2rem;
+  padding-bottom: 20px;
+}
